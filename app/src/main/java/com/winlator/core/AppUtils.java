@@ -232,6 +232,17 @@ public abstract class AppUtils {
         }
     }
 
+    /* TRU Launch: имя версии приложения */
+    public static String getVersionName(Context context) {
+        try {
+            PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return pInfo.versionName;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            return "?";
+        }
+    }
+
     public static void observeSoftKeyboardVisibility(View rootView, Callback<Boolean> callback) {
         final boolean[] visible = {false};
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {

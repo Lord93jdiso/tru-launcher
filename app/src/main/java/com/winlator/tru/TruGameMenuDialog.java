@@ -1,6 +1,7 @@
 package com.winlator.tru;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
