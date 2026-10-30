@@ -97,6 +97,7 @@ public class TruEngine {
         container.setBox64Preset(prefs.getBox64Preset());
         container.setGraphicsDriver(prefs.getVulkanDriver()+","+prefs.getOpenGLDriver());
         container.setDXWrapper(prefs.getDXWrapper());
+        container.setHUDMode((byte) prefs.getHudMode());
         container.setDrives(composeDrives(prefs));
         container.saveData();
     }
