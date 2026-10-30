@@ -24,7 +24,7 @@
         android:allowAudioPlaybackCapture="true"
         android:label="@string/app_name">
 
-        <activity android:name="com.winlator.TruLauncherActivity"
+        <activity android:name="com.winlator.tru.TruLauncherActivity"
             android:theme="@style/TruTheme"
             android:exported="true"
             android:screenOrientation="sensor"
@@ -41,13 +41,13 @@
             android:screenOrientation="sensor"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|density|navigation" />
 
-        <activity android:name="com.winlator.TruSettingsActivity"
+        <activity android:name="com.winlator.tru.TruSettingsActivity"
             android:theme="@style/TruTheme"
             android:exported="false"
             android:screenOrientation="sensor"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|density|navigation" />
 
-        <activity android:name="com.winlator.TruControlsEditorActivity"
+        <activity android:name="com.winlator.tru.TruControlsEditorActivity"
             android:theme="@style/TruTheme"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
