@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tru_bg_deep">
+
+    <!-- Фоновый арт-деко слой -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tru_bg" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="18dp">
+
+            <!-- Декор: линии + ромб -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+                <View android:layout_width="8dp" android:layout_height="8dp" android:layout_margin="8dp" android:background="@drawable/tru_diamond" />
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TVTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/tru_title"
+                android:textColor="@color/tru_gold"
+                android:textSize="24sp"
+                android:letterSpacing="0.12"
+                android:shadowColor="@color/tru_gold_glow"
+                android:shadowDx="0" android:shadowDy="0" android:shadowRadius="14"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tru_subtitle"
+                android:textColor="@color/tru_muted"
+                android:textSize="11sp"
+                android:letterSpacing="0.35"
+                android:layout_marginTop="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+                <View android:layout_width="8dp" android:layout_height="8dp" android:layout_margin="8dp" android:background="@drawable/tru_diamond" />
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+            </LinearLayout>
+
+            <!-- Карточка состояния -->
+            <LinearLayout
+                android:id="@+id/LLStatusCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/tru_panel">
+
+                <TextView
+                    android:id="@+id/TVGameDir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/tru_text"
+                    android:textSize="13sp"
+                    android:maxLines="2"
+                    android:ellipsize="start" />
+
+                <TextView
+                    android:id="@+id/TVStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/tru_text_soft"
+                    android:textSize="11sp"
+                    android:maxLines="3" />
+            </LinearLayout>
+
+            <!-- Быстрые настройки -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginTop="12dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/BTChipResolution"
+                        style="@style/TruChip"
+                        android:text="@string/tru_chip_resolution" />
+
+                    <Button
+                        android:id="@+id/BTChipPerformance"
+                        style="@style/TruChip"
+                        android:text="@string/tru_chip_performance" />
+
+                    <Button
+                        android:id="@+id/BTChipHud"
+                        style="@style/TruChip"
+                        android:text="@string/tru_chip_hud" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Главные кнопки -->
+            <Button
+                android:id="@+id/BTPlay"
+                style="@style/TruButtonPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="22dp"
+                android:text="@string/tru_play" />
+
+            <Button
+                android:id="@+id/BTSettings"
+                style="@style/TruButtonSecondary"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/tru_settings" />
+
+            <Button
+                android:id="@+id/BTExit"
+                style="@style/TruButtonGhost"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/tru_exit" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="18dp">
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+                <View android:layout_width="8dp" android:layout_height="8dp" android:layout_margin="8dp" android:background="@drawable/tru_diamond" />
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/tru_gold_dim" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TVVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/tru_muted"
+                android:textSize="10sp"
+                android:letterSpacing="0.2" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

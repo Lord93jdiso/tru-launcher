@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tru_pick_folder"
+        android:textColor="@color/tru_gold"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/ETGamePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/tru_pick_folder_hint"
+        android:textColor="@color/tru_text"
+        android:textColorHint="@color/tru_muted"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/BTBrowse"
+        style="@style/TruButtonSecondary"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/tru_browse" />
+</LinearLayout>

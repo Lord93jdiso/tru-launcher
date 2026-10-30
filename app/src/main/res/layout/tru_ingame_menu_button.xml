@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/BTTruMenu"
+    android:background="@drawable/tru_chip"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:text="TRU"
+    android:textColor="@color/tru_gold"
+    android:textSize="12sp"
+    android:textStyle="bold"
+    android:alpha="0.55" />

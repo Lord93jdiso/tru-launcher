@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Тема TRU Launch: тёмный арт-деко -->
+    <style name="TruTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/tru_bg_deep</item>
+        <item name="android:statusBarColor">@color/tru_bg_deep</item>
+        <item name="android:navigationBarColor">@color/tru_bg_deep</item>
+        <item name="android:textColorPrimary">@color/tru_text</item>
+        <item name="colorAccent">@color/tru_gold</item>
+        <item name="colorPrimary">@color/tru_gold</item>
+        <item name="colorPrimaryVariant">@color/tru_gold</item>
+        <item name="colorPrimaryDark">@color/tru_bg_deep</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TruChip" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/tru_chip</item>
+        <item name="android:textColor">@color/tru_gold_bright</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+        <item name="android:minHeight">34dp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TruButtonPrimary" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/tru_btn_play</item>
+        <item name="android:textColor">#1c1405</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.22</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TruButtonSecondary" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/tru_btn_secondary</item>
+        <item name="android:textColor">@color/tru_gold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.18</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TruButtonGhost" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/tru_btn_ghost</item>
+        <item name="android:textColor">@color/tru_muted</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.18</item>
+        <item name="textAllCaps">true</item>
+    </style>
+</resources>

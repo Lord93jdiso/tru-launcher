@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Палитра TRU Launch: тёмный мрамор + золото -->
+    <color name="tru_bg_deep">#070709</color>
+    <color name="tru_bg_soft">#0e0d12</color>
+    <color name="tru_panel">#17161acc</color>
+    <color name="tru_panel_border">#3e3312ff</color>
+    <color name="tru_gold">#d4af37</color>
+    <color name="tru_gold_bright">#f1d07a</color>
+    <color name="tru_gold_glow">#66d4af37</color>
+    <color name="tru_gold_dim">#4a3f23</color>
+    <color name="tru_text">#f2ead5</color>
+    <color name="tru_text_soft">#b9ad8f</color>
+    <color name="tru_muted">#8b8065</color>
+    <color name="tru_press">#3a2f14</color>
+</resources>
+
