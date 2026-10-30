@@ -15,7 +15,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
+      # SDK предустановлен на runner'е; принимаем лицензии и ставим pinned NDK/CMake
+      - name: Accept Android SDK licenses & install pinned components
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "platform-tools" "ndk;24.0.8215888" "cmake;3.22.1" >/dev/null
+          echo "SDK ready: $ANDROID_HOME"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -23,13 +28,18 @@ jobs:
       - name: Build APK (debug, signed)
         run: ./gradlew :app:assembleDebug --stacktrace --no-daemon
 
-      - name: Build APK (release, debug-signature)
-        run: ./gradlew :app:assembleRelease --stacktrace --no-daemon
-
-      - name: Upload artifact
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: tru-launcher-apk
           path: |
             app/build/outputs/apk/debug/*.apk
-            app/build/outputs/apk/release/*.apk
+
+      - name: Attach APK to run page
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
+        with:
+          tag_name: apk-latest
+          name: TRU Launch APK
+          files: app/build/outputs/apk/debug/*.apk
+          allow_updates: true
