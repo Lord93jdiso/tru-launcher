@@ -20,8 +20,6 @@
     <string name="tru_browse">Browse</string>
     <string name="tru_generic_error">Something went wrong</string>
     <string name="tru_done">Done</string>
-    <string name="tru_set_import_driver">Import driver</string>
-    <string name="tru_set_dxvk_version">DXVK version</string>
     <string name="tru_resolution_title">Resolution</string>
     <string name="tru_perf_title">Performance preset</string>
     <string name="trt_perf_stability">Stability</string>
