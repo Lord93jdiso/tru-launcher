@@ -35,9 +35,13 @@ public class GuestProgramLauncherComponent extends EnvironmentComponent {
     public void start() {
         synchronized (lock) {
             stop();
+            android.util.Log.w("TRUENV", "EXP GuestProgramLauncher start: extractBox64File");
             extractBox64File();
+            android.util.Log.w("TRUENV", "EXP GuestProgramLauncher start: copyDefaultBox64RCFile");
             copyDefaultBox64RCFile();
+            android.util.Log.w("TRUENV", "EXP GuestProgramLauncher start: execGuestProgram");
             pid = execGuestProgram();
+            android.util.Log.w("TRUENV", "EXP GuestProgramLauncher guest pid=" + pid);
         }
     }
 

@@ -19,6 +19,9 @@
     <string name="tru_pick_folder_hint">/storage/emulated/0/TRU</string>
     <string name="tru_browse">Обзор</string>
     <string name="tru_generic_error">Что-то пошло не так</string>
+    <string name="tru_done">Готово</string>
+    <string name="tru_set_import_driver">Импортировать драйвер</string>
+    <string name="tru_set_dxvk_version">Версия DXVK</string>
     <string name="tru_resolution_title">Разрешение</string>
     <string name="tru_perf_title">Пресет производительности</string>
     <string name="trt_perf_stability">Стабильность</string>

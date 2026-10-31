@@ -94,38 +94,52 @@ public class TruSettingsActivity extends AppCompatActivity {
     /* ---------- Графика/драйверы ---------- */
 
     private void showDriversDialog() {
-        String[] labels = {
+        TruPrefs p = prefs();
+        final String[] vulkanLabels = {
             getString(R.string.trt_driver_turnip),
-            getString(R.string.trt_driver_vortek),
-            getString(R.string.trt_driver_gladio),
-            getString(R.string.trt_driver_zink),
-            getString(R.string.trt_driver_virgl)
+            getString(R.string.trt_driver_vortek)
         };
-        String[] vulkan = {
+        final String[] vulkanValues = {
             com.winlator.container.GraphicsDrivers.TURNIP,
-            com.winlator.container.GraphicsDrivers.VORTEK, null, null, null
+            com.winlator.container.GraphicsDrivers.VORTEK
         };
-        String[] opengl = {
-            null, null,
-            com.winlator.container.GraphicsDrivers.GLADIO,
+        final String[] openglLabels = {
+            getString(R.string.trt_driver_zink),
+            getString(R.string.trt_driver_virgl),
+            getString(R.string.trt_driver_gladio)
+        };
+        final String[] openglValues = {
             com.winlator.container.GraphicsDrivers.ZINK,
-            com.winlator.container.GraphicsDrivers.VIRGL
+            com.winlator.container.GraphicsDrivers.VIRGL,
+            com.winlator.container.GraphicsDrivers.GLADIO
         };
 
-        TruPrefs p = prefs();
-        int checked = 0;
-        for (int i = 0; i < labels.length; i++) {
-            if (vulkan[i] != null && vulkan[i].equals(p.getVulkanDriver())) checked = i;
-            else if (opengl[i] != null && opengl[i].equals(p.getOpenGLDriver())) checked = i;
-        }
+        int vkChecked = 0, glChecked = openglValues.length - 1;
+        for (int i = 0; i < vulkanValues.length; i++) if (vulkanValues[i].equals(p.getVulkanDriver())) vkChecked = i;
+        for (int i = 0; i < openglValues.length; i++) if (openglValues[i].equals(p.getOpenGLDriver())) glChecked = i;
 
         new androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle(R.string.tru_set_drivers)
-            .setSingleChoiceItems(labels, checked, (d, which) -> {
-                if (vulkan[which] != null) p.setVulkanDriver(vulkan[which]);
-                else if (opengl[which] != null) p.setOpenGLDriver(opengl[which]);
+            .setMessage("Vulkan: " + vulkanLabels[vkChecked] + "  |  OpenGL: " + openglLabels[glChecked] + "\nВыберите Vulkan-драйвер:")
+            .setSingleChoiceItems(vulkanLabels, vkChecked, (d, which) -> {
+                p.setVulkanDriver(vulkanValues[which]);
                 d.dismiss();
+                showOpenGLDialog(vulkanLabels[which], openglLabels, openglValues, glChecked);
             })
+            .setPositiveButton(R.string.tru_done, null)
+            .show();
+    }
+
+    private void showOpenGLDialog(String vulkanName, String[] openglLabels, String[] openglValues, int checked) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(R.string.tru_set_drivers)
+            .setMessage("Выбран Vulkan: " + vulkanName + "\nВыберите OpenGL-драйвер:")
+            .setSingleChoiceItems(openglLabels, checked, (d, which) -> {
+                prefs().setOpenGLDriver(openglValues[which]);
+                d.dismiss();
+                AppUtils.showToast(this, vulkanName + " + " + openglLabels[which]);
+            })
+            .setPositiveButton(R.string.tru_done, null)
             .show();
     }
 

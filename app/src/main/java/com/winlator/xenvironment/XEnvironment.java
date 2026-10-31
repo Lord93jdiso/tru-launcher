@@ -1,6 +1,7 @@
 package com.winlator.xenvironment;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.winlator.core.FileUtils;
 
@@ -54,7 +55,11 @@ public class XEnvironment implements Iterable<EnvironmentComponent> {
 
     public void startEnvironmentComponents() {
         FileUtils.clear(getTmpDir());
-        for (EnvironmentComponent environmentComponent : this) environmentComponent.start();
+        for (EnvironmentComponent environmentComponent : this) {
+            Log.w("TRUENV", "EXP start component: " + environmentComponent.getClass().getSimpleName());
+            environmentComponent.start();
+        }
+        Log.w("TRUENV", "EXP all components started");
     }
 
     public void stopEnvironmentComponents() {

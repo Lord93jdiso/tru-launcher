@@ -271,12 +271,26 @@ public class XServerDisplayActivity extends AppCompatActivity implements Navigat
         setupUI();
 
         Executors.newSingleThreadExecutor().execute(() -> {
-            if (!isGenerateWineprefix()) {
-                setupWineSystemFiles();
-                extractGraphicsDriverFiles();
-                changeWineAudioDriver();
+            try {
+                if (!isGenerateWineprefix()) {
+                    Log.w("TRUENG", "STEP 1 setupWineSystemFiles");
+                    setupWineSystemFiles();
+                    Log.w("TRUENG", "STEP 2 extractGraphicsDriverFiles");
+                    extractGraphicsDriverFiles();
+                    Log.w("TRUENG", "STEP 3 changeWineAudioDriver");
+                    changeWineAudioDriver();
+                }
+                Log.w("TRUENG", "STEP 4 setupXEnvironment");
+                setupXEnvironment();
+                Log.w("TRUENG", "STEP 5 environment started");
             }
-            setupXEnvironment();
+            catch (Throwable t) {
+                Log.e("TRUENG", "ENGINE START FAILED", t);
+                runOnUiThread(() -> {
+                    try { preloaderDialog.close(); } catch (Throwable ignored) {}
+                    AppUtils.showToast(this, "Engine error: " + t);
+                });
+            }
         });
     }
 
