@@ -115,16 +115,22 @@
                     <Button
                         android:id="@+id/BTChipResolution"
                         style="@style/TruChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/tru_chip_resolution" />
 
                     <Button
                         android:id="@+id/BTChipPerformance"
                         style="@style/TruChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/tru_chip_performance" />
 
                     <Button
                         android:id="@+id/BTChipHud"
                         style="@style/TruChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/tru_chip_hud" />
                 </LinearLayout>
             </HorizontalScrollView>

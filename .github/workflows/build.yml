@@ -24,10 +24,20 @@ jobs:
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0" "platform-tools" "ndk;24.0.8215888" "cmake;3.22.1" >/dev/null
           echo "SDK ready: $ANDROID_HOME"
 
+      - name: Restore signing keystore
+        env:
+          TRU_KEYSTORE_B64: ${{ secrets.TRU_KEYSTORE_B64 }}
+        run: |
+          echo "$TRU_KEYSTORE_B64" | base64 --decode > "$GITHUB_WORKSPACE/tru-release.keystore"
+          echo "keystore restored"
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build APK (debug, signed)
+      - name: Build APK (debug, stable signature)
+        env:
+          TRU_KS_PATH: ${{ github.workspace }}/tru-release.keystore
+          TRU_KEYSTORE_PASS: ${{ secrets.TRU_KEYSTORE_PASS }}
         run: ./gradlew :app:assembleDebug --stacktrace --no-daemon
 
       - name: Upload APK artifact
