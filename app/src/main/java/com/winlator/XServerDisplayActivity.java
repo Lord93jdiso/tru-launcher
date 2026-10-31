@@ -5,6 +5,7 @@ import android.app.PictureInPictureParams;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.util.Log;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
