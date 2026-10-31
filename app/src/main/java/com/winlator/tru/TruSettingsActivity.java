@@ -114,9 +114,10 @@ public class TruSettingsActivity extends AppCompatActivity {
             com.winlator.container.GraphicsDrivers.GLADIO
         };
 
-        int vkChecked = 0, glChecked = openglValues.length - 1;
-        for (int i = 0; i < vulkanValues.length; i++) if (vulkanValues[i].equals(p.getVulkanDriver())) vkChecked = i;
-        for (int i = 0; i < openglValues.length; i++) if (openglValues[i].equals(p.getOpenGLDriver())) glChecked = i;
+        int vkChecked0 = 0, glChecked0 = openglValues.length - 1;
+        for (int i = 0; i < vulkanValues.length; i++) if (vulkanValues[i].equals(p.getVulkanDriver())) vkChecked0 = i;
+        for (int i = 0; i < openglValues.length; i++) if (openglValues[i].equals(p.getOpenGLDriver())) glChecked0 = i;
+        final int vkChecked = vkChecked0, glChecked = glChecked0;
 
         new androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle(R.string.tru_set_drivers)
