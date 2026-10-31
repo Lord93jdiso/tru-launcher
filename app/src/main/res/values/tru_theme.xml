@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Тема TRU Launch: тёмный арт-деко -->
-    <style name="TruTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="TruTheme" parent="AppThemeDark">
         <item name="android:windowBackground">@color/tru_bg_deep</item>
         <item name="android:statusBarColor">@color/tru_bg_deep</item>
         <item name="android:navigationBarColor">@color/tru_bg_deep</item>
