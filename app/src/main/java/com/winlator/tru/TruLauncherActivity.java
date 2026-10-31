@@ -2,6 +2,7 @@ package com.winlator.tru;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,8 @@ public class TruLauncherActivity extends AppCompatActivity {
         prefs = new TruPrefs(this);
         preloader = new PreloaderDialog(this);
 
+        requestStoragePermissions();
+
         tvStatus = findViewById(R.id.TVStatus);
         tvGameDir = findViewById(R.id.TVGameDir);
         tvVersion = findViewById(R.id.TVVersion);
@@ -66,6 +69,26 @@ public class TruLauncherActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         refreshStatus();
+    }
+
+    /* ---------------- РАЗРЕШЕНИЯ ---------------- */
+
+    private static final int REQUEST_STORAGE = 101;
+
+    private void requestStoragePermissions() {
+        boolean writeOk = androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == android.content.pm.PackageManager.PERMISSION_GRANTED;
+        boolean readOk = androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == android.content.pm.PackageManager.PERMISSION_GRANTED;
+        if (!writeOk || !readOk) {
+            androidx.core.app.ActivityCompat.requestPermissions(this,
+                new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                REQUEST_STORAGE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d("TRU", "onRequestPermissionsResult: requestCode=" + requestCode + " results=" + java.util.Arrays.toString(grantResults));
     }
 
     /* ---------------- РЕПЛИКИ ---------------- */
@@ -96,7 +119,8 @@ public class TruLauncherActivity extends AppCompatActivity {
             TruEngine.installRootFs(this, ok -> {
                 preloader.closeOnUiThread();
                 if (ok != Boolean.TRUE) {
-                    showFatal(getString(R.string.tru_generic_error));
+                    Log.e("TRU", "installRootFs failed");
+                    showFatal("Ошибка установки системных файлов (rootfs).\nПроверьте интернет-соединение и попробуйте снова.");
                     return;
                 }
                 ensureContainerAndRun();
@@ -111,7 +135,8 @@ public class TruLauncherActivity extends AppCompatActivity {
         TruEngine.ensureContainer(this, (container, created) -> {
             preloader.closeOnUiThread();
             if (container == null) {
-                showFatal(getString(R.string.tru_generic_error));
+                Log.e("TRU", "ensureContainer returned null");
+                showFatal("Не удалось создать контейнер механизма Winlator.");
                 return;
             }
             TruEngine.runGame(this, container);
@@ -147,13 +172,19 @@ public class TruLauncherActivity extends AppCompatActivity {
         if (path.isEmpty()) return;
         File dir = new File(path);
         if (!dir.isDirectory()) {
-            showFatal(getString(R.string.tru_generic_error));
+            Log.e("TRU", "applyGameDir: path is not a directory: " + path + " (exists=" + dir.exists() + ", canRead=" + dir.canRead() + ")");
+            showFatal("Папка не найдена или недоступна:\n" + path + "\n\nПроверьте разрешение на доступ к файлам.");
             return;
         }
         prefs.setGameDir(dir.getAbsolutePath());
 
         File exe = TruEngine.findGameExecutable(dir.getAbsolutePath());
-        if (exe != null) prefs.setExeName(exe.getName());
+        if (exe == null) {
+            Log.e("TRU", "applyGameDir: no .exe found in " + dir.getAbsolutePath());
+            showFatal("Не найден .exe в папке:\n" + dir.getAbsolutePath());
+            return;
+        }
+        prefs.setExeName(exe.getName());
 
         refreshStatus();
         startGamePipeline();

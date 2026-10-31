@@ -204,10 +204,18 @@ public class TruEngine {
             String docId = DocumentsContract.getTreeDocumentId(treeUri);
             if (docId == null) return "";
             String[] parts = docId.split(":");
+            String vol = (parts.length > 1 && !parts[0].isEmpty()) ? parts[0] : "primary";
             String sub = parts.length > 1 ? parts[1] : "";
-            String base = Environment.getExternalStorageDirectory().getAbsolutePath();
-            if (sub.isEmpty()) return base;
-            return base + "/" + sub;
+            String root;
+            if (vol.equalsIgnoreCase("primary")) {
+                root = Environment.getExternalStorageDirectory().getAbsolutePath();
+            }
+            else {
+                // second storage (SD card): docId uses volume UUID as first segment
+                root = "/storage/" + vol;
+            }
+            if (sub.isEmpty()) return root;
+            return root + "/" + sub;
         }
         catch (Exception e) {
             return "";
